@@ -1,3 +1,4 @@
+/*
 import * as THREE from "https://unpkg.com/three@0.164.0/build/three.module.js";
 
 function createScene() {
@@ -136,5 +137,19 @@ fetch('map.json')
     .catch(error => console.error('Error loading GeoJSON:', error));
 
 //createDot(sphere);
+handleResize(camera, renderer);
+animate(scene, camera, renderer, sphere);
+ */
+
+import { createCamera, handleResize } from './camera.js';
+import { createScene, createRenderer, createLighting, animate } from './scene.js';
+import { createEarth } from './earth/earth.js';
+
+const scene = createScene();
+const camera = createCamera();
+const renderer = createRenderer();
+const sphere = createEarth(scene);
+
+createLighting(scene);
 handleResize(camera, renderer);
 animate(scene, camera, renderer, sphere);

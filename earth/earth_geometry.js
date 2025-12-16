@@ -2,11 +2,22 @@ import * as THREE from "https://unpkg.com/three@0.164.0/build/three.module.js";
 
 export function createSphere() {
     const geometry = new THREE.SphereGeometry(1, 64, 64);
+
+    // Load texture
+    const textureLoader = new THREE.TextureLoader();
+    const earthTexture = textureLoader.load(
+        'https://unpkg.com/three-globe@2.31.0/example/img/earth-blue-marble.jpg',
+        () => console.log('Texture loaded'),
+        undefined,
+        (err) => console.error('Texture loading error:', err)
+    );
+
     const material = new THREE.MeshStandardMaterial({
-        color: 0x0077ff,
-        roughness: 0.5,
-        metalness: 0.5,
+        map: earthTexture,
+        roughness: 0.7,
+        metalness: 0.2,
     });
+
     return new THREE.Mesh(geometry, material);
 }
 

@@ -144,12 +144,14 @@ animate(scene, camera, renderer, sphere);
 import { createCamera, handleResize } from './camera.js';
 import { createScene, createRenderer, createLighting, animate } from './scene.js';
 import { createEarth } from './earth/earth.js';
+import {createSun} from "./sun/sun.js";
 
 const scene = createScene();
 const camera = createCamera();
 const renderer = createRenderer();
 const sphere = createEarth(scene);
+const sun = createSun(scene);
 
 createLighting(scene);
 handleResize(camera, renderer);
-animate(scene, camera, renderer, sphere);
+animate(scene, camera, renderer, sphere, sun);

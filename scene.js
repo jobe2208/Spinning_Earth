@@ -21,11 +21,13 @@ export function createLighting(scene) {
     scene.add(pointLight);
 }
 
-export function animate(scene, camera, renderer, sphere) {
+export function animate(scene, camera, renderer, sphere, sun) {
     function render() {
         requestAnimationFrame(render);
         sphere.rotation.x += 0.00;
         sphere.rotation.y += 0.005;
+        sun.rotation.x += 0.00;
+        sun.rotation.y += 0.01;
         renderer.render(scene, camera);
     }
     render();

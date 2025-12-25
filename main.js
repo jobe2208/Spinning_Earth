@@ -149,9 +149,9 @@ import {createSun} from "./sun/sun.js";
 const scene = createScene();
 const camera = createCamera();
 const renderer = createRenderer();
-const sphere = createEarth(scene);
-const sun = createSun(scene);
+const earth = createEarth(scene);
+const { sunMesh, sunLight } = createSun(scene, earth);
 
 createLighting(scene);
 handleResize(camera, renderer);
-animate(scene, camera, renderer, sphere, sun);
+animate(scene, camera, renderer, earth, sunMesh, sunLight);

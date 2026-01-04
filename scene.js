@@ -13,12 +13,11 @@ export function createRenderer() {
 }
 
 export function createLighting(scene) {
-    const ambientLight = new THREE.AmbientLight(0xffffff, 0.15);
-    scene.add(ambientLight);
-
-    const pointLight = new THREE.PointLight(0xffffff, 10);
-    pointLight.position.set(2, 5, 4);
-    scene.add(pointLight);
+    scene.add(new THREE.AmbientLight(0xffffff, 0.02)); // tiny fill
+    // remove this for now:
+    // const pointLight = new THREE.PointLight(0xffffff, 10);
+    // pointLight.position.set(2, 5, 4);
+    // scene.add(pointLight);
 }
 
 export function animate(scene, camera, renderer, sphere) {

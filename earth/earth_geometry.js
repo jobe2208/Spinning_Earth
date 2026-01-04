@@ -14,8 +14,8 @@ export function createSphere() {
 
     const material = new THREE.MeshStandardMaterial({
         map: earthTexture,
-        roughness: 0.7,
-        metalness: 0.2,
+        roughness: 0.9,
+        metalness: 0.1,
     });
 
     return new THREE.Mesh(geometry, material);

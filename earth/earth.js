@@ -8,6 +8,9 @@ export function createEarth(scene) {
     return sphere;
 }
 
-export function rotateEarth(sphere, speed = 0.005) {
+/* No longer used; rotation handled in scene.js but keep for if future changes needed
+export function rotateEarth
+(sphere, speed = 0.005) {
     sphere.rotation.y += speed;
 }
+*/

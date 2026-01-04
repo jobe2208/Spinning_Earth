@@ -22,9 +22,12 @@ export function createLighting(scene) {
 }
 
 export function animate(scene, camera, renderer, sphere) {
+    // Apply Earth's axial tilt (23.5 degrees)
+    sphere.rotation.z = THREE.MathUtils.degToRad(23.5);
+
     function render() {
         requestAnimationFrame(render);
-        sphere.rotation.x += 0.00;
+        // Rotate around Y-axis (counterclockwise when viewed from above North Pole)
         sphere.rotation.y += 0.005;
         renderer.render(scene, camera);
     }

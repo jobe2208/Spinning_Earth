@@ -1,4 +1,4 @@
-// earth_orbit.js
+// earth_orbit.js - test comment from kevin branch
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 
 export function createOrbitControls(camera, renderer, domElement, target = null, options = {}) {

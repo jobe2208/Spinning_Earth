@@ -6,6 +6,11 @@ export function makeCameraController(camera) {
     const sensitivity =  0.002; // mouse
     const maxPitch = Math.PI / 2 - 0.1; // prevent flipping
 
+    // FOV zoom settings
+    const minFOV = 5;
+    const maxFOV = 25;
+    const zoomSpeed = 2;
+
     let autoYaw = 0;
     let userYawOffset = 0;
     let userPitch = 0;
@@ -39,6 +44,14 @@ export function makeCameraController(camera) {
         userPitch -= dy * sensitivity;
         userPitch = THREE.MathUtils.clamp(userPitch, -maxPitch, maxPitch);
     });
+
+    window.addEventListener("wheel", (e) => {
+        e.preventDefault();
+
+        camera.fov += e.deltaY * zoomSpeed * 0.01;
+        camera.fov = THREE.MathUtils.clamp(camera.fov, minFOV, maxFOV);
+        camera.updateProjectionMatrix();
+    }, { passive: false });
 
     function update(target = new THREE.Vector3(0, 0, 0)) {
         autoYaw += spinSpeed;

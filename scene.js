@@ -25,7 +25,7 @@ export function animate(scene, camera, renderer, earth, sunMesh, sunLight, camer
     function render() {
         requestAnimationFrame(render);
         earth.rotation.x += 0.00;
-       // earth.rotation.y += 0.005;
+        // earth.rotation.y += 0.005;
         //sunMesh.rotation.x += 0.00;
         //sunMesh.rotation.y += 0.01;
         sunLight.position.copy(sunMesh.position);
@@ -40,5 +40,3 @@ export function animate(scene, camera, renderer, earth, sunMesh, sunLight, camer
     }
     render();
 }
-
-

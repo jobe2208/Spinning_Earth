@@ -36,7 +36,7 @@ export function addMergedDotsFromGeoJSON(sphere, geoJSON) {
 
     const material = new THREE.PointsMaterial({
         color: 0xffffff,
-        size: 0.003,
+        size: 0.001,
     });
 
     const points = new THREE.Points(geometry, material);
@@ -45,7 +45,7 @@ export function addMergedDotsFromGeoJSON(sphere, geoJSON) {
 
 export async function loadGeoJSON(sphere) {
     try {
-        const response = await fetch('map.json');
+        const response = await fetch('countries.geojson');
         const data = await response.json();
         addMergedDotsFromGeoJSON(sphere, data);
     } catch (error) {

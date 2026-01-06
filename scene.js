@@ -21,28 +21,27 @@ export function createLighting(scene) {
     // scene.add(pointLight);
 }
 
-export function animate(scene, camera, renderer, sphere, ufo = null) {
-    sphere.rotation.z = THREE.MathUtils.degToRad(23.5);
-    let startTime = Date.now();
-
-export function animate(scene, camera, renderer, earth, sunMesh, sunLight, cameraController) {
+export function animate(scene, camera, renderer, sphere, sunMesh, sunLight, cameraController, ufo = null) {
     function render() {
         requestAnimationFrame(render);
+        let startTime = Date.now();
         const elapsedTime = Date.now() - startTime;
+        sphere.rotation.z = THREE.MathUtils.degToRad(23.5);
+
 
         sphere.rotation.y += 0.005;
 
         if (ufo) {
             animateUFO(ufo, elapsedTime);
         }
-        earth.rotation.x += 0.00;
+        sphere.rotation.x += 0.00;
         // earth.rotation.y += 0.005;
         //sunMesh.rotation.x += 0.00;
         //sunMesh.rotation.y += 0.01;
         sunLight.position.copy(sunMesh.position);
-        sunLight.target.position.copy(earth.position);
+        sunLight.target.position.copy(sphere.position);
         sunLight.target.updateMatrixWorld();
-        cameraController.update(earth);
+        cameraController.update(sphere);
 
         //
 

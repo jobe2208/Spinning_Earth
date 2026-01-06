@@ -7,10 +7,8 @@ export function createCamera() {
         0.1,
         1000
     );
-    //camera.position.z = 5;
-    camera.position.set(5, 0, 0);
 
-    // Make camera look at the center of the Earth
+    camera.position.set(0, 0, 20);
     camera.lookAt(0, 0, 0);
     return camera;
 }

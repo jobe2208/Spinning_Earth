@@ -4,9 +4,12 @@ import { createCamera, handleResize } from './camera.js';
 import { createScene, createRenderer, createLighting, animate } from './scene.js';
 import { createEarth } from './earth/earth.js';
 import { createUFO } from './ufo/ufo.js';
+import {createSun} from "./sun/sun.js";
+import {makeCameraController} from "./camera_controls.js";
 
 const scene = createScene();
 const camera = createCamera();
+const cameraController = makeCameraController(camera);
 const renderer = createRenderer();
 const sphere = createEarth(scene);
 const ufo = createUFO();
@@ -23,3 +26,4 @@ toggleButton.addEventListener('click', () => {
     toggleButton.textContent = ufoVisible ? 'Add UFO' : 'Remove UFO';
     ufoVisible = !ufoVisible;
 });
+animate(scene, camera, renderer, earth, sunMesh, sunLight, cameraController);

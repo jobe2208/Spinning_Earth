@@ -25,6 +25,7 @@ export function animate(scene, camera, renderer, sphere, ufo = null) {
     sphere.rotation.z = THREE.MathUtils.degToRad(23.5);
     let startTime = Date.now();
 
+export function animate(scene, camera, renderer, earth, sunMesh, sunLight, cameraController) {
     function render() {
         requestAnimationFrame(render);
         const elapsedTime = Date.now() - startTime;
@@ -34,6 +35,17 @@ export function animate(scene, camera, renderer, sphere, ufo = null) {
         if (ufo) {
             animateUFO(ufo, elapsedTime);
         }
+        earth.rotation.x += 0.00;
+        // earth.rotation.y += 0.005;
+        //sunMesh.rotation.x += 0.00;
+        //sunMesh.rotation.y += 0.01;
+        sunLight.position.copy(sunMesh.position);
+        sunLight.target.position.copy(earth.position);
+        sunLight.target.updateMatrixWorld();
+        cameraController.update(earth);
+
+        //
+
 
         renderer.render(scene, camera);
     }

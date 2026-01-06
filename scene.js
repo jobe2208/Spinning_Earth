@@ -20,8 +20,8 @@ export function createLighting(scene) {
     // scene.add(pointLight);
 }
 
-let angle = 0; // just for camera orbit debug
-export function animate(scene, camera, renderer, earth, sunMesh, sunLight) {
+
+export function animate(scene, camera, renderer, earth, sunMesh, sunLight, cameraController) {
     function render() {
         requestAnimationFrame(render);
         earth.rotation.x += 0.00;
@@ -31,14 +31,8 @@ export function animate(scene, camera, renderer, earth, sunMesh, sunLight) {
         sunLight.position.copy(sunMesh.position);
         sunLight.target.position.copy(earth.position);
         sunLight.target.updateMatrixWorld();
+        cameraController.update(earth);
 
-        // CAMERA ORBIT (DEBUG) - remove when we add camera controls later
-        angle += 0.002;          // speed
-        const radius = 20;
-
-        camera.position.x = Math.cos(angle) * radius;
-        camera.position.z = Math.sin(angle) * radius;
-        camera.lookAt(0, 0, 0);
         //
 
 

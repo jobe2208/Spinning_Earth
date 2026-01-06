@@ -145,13 +145,15 @@ import { createCamera, handleResize } from './camera.js';
 import { createScene, createRenderer, createLighting, animate } from './scene.js';
 import { createEarth } from './earth/earth.js';
 import {createSun} from "./sun/sun.js";
+import {makeCameraController} from "./camera_controls.js";
 
 const scene = createScene();
 const camera = createCamera();
+const cameraController = makeCameraController(camera);
 const renderer = createRenderer();
 const earth = createEarth(scene);
 const { sunMesh, sunLight } = createSun(scene, earth);
 
 createLighting(scene);
 handleResize(camera, renderer);
-animate(scene, camera, renderer, earth, sunMesh, sunLight);
+animate(scene, camera, renderer, earth, sunMesh, sunLight, cameraController);

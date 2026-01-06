@@ -1,4 +1,5 @@
 import * as THREE from "https://unpkg.com/three@0.164.0/build/three.module.js";
+import { animateUFO } from './ufo/ufo.js';
 
 export function createScene() {
     return new THREE.Scene();
@@ -20,10 +21,20 @@ export function createLighting(scene) {
     // scene.add(pointLight);
 }
 
+export function animate(scene, camera, renderer, sphere, ufo = null) {
+    sphere.rotation.z = THREE.MathUtils.degToRad(23.5);
+    let startTime = Date.now();
 
 export function animate(scene, camera, renderer, earth, sunMesh, sunLight, cameraController) {
     function render() {
         requestAnimationFrame(render);
+        const elapsedTime = Date.now() - startTime;
+
+        sphere.rotation.y += 0.005;
+
+        if (ufo) {
+            animateUFO(ufo, elapsedTime);
+        }
         earth.rotation.x += 0.00;
         // earth.rotation.y += 0.005;
         //sunMesh.rotation.x += 0.00;

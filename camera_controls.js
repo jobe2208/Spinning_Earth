@@ -11,8 +11,7 @@ export function makeCameraController(camera) {
     const maxFOV = 25;
     const zoomSpeed = 2;
 
-    let autoYaw = 0;
-    let userYawOffset = 0;
+    let yaw = 0;
     let userPitch = 0;
 
     let dragging = false;
@@ -37,9 +36,6 @@ export function makeCameraController(camera) {
         prevX = e.clientX;
         prevY = e.clientY;
 
-        // Optional: allow user to adjust yaw too (feels nice)
-       // userYawOffset -= dx * sensitivity;
-
         // Pitch: up/down
         userPitch -= dy * sensitivity;
         userPitch = THREE.MathUtils.clamp(userPitch, -maxPitch, maxPitch);
@@ -54,12 +50,11 @@ export function makeCameraController(camera) {
     }, { passive: false });
 
     function update(target = new THREE.Vector3(0, 0, 0)) {
-        autoYaw += spinSpeed;
 
         // Accept Mesh/Object3D OR Vector3
         const t = (target && target.position) ? target.position : target;
 
-        const yaw = autoYaw + userYawOffset;
+        yaw += spinSpeed;
         const pitch = userPitch;
 
         camera.position.x = t.x + radius * Math.sin(yaw) * Math.cos(pitch);
